@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../modules/application">
+      <excludeFolder url="file://$MODULE_DIR$/../../convertmodule/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../convertmodule/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../convertmodule/out" />
+      <excludeFolder url="file://$MODULE_DIR$/../../modules/convertmodule/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../modules/convertmodule/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../modules/convertmodule/out" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

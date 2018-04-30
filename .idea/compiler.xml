@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="application_main" target="1.8" />
+      <module name="application_test" target="1.8" />
+      <module name="converter-converter_main" target="1.8" />
+      <module name="converter-converter_test" target="1.8" />
+      <module name="converter_main" target="1.8" />
+      <module name="converter_test" target="1.8" />
+      <module name="convertmodule_main" target="1.8" />
+      <module name="convertmodule_test" target="1.8" />
+      <module name="modules-converter_main" target="1.8" />
+      <module name="modules-converter_test" target="1.8" />
+      <module name="modules-convertmodule_main" target="1.8" />
+      <module name="modules-convertmodule_test" target="1.8" />
+      <module name="modules_main" target="1.8" />
+      <module name="modules_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
