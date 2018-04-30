@@ -22,4 +22,5 @@ blog/bin/
 **/*.iml
 **/.idea
 **/.gradle
+.idea
 
