@@ -1,5 +1,7 @@
 package converter.convert;
 
+import io.reactivex.Completable;
+
 public interface ConvertStrategy {
-    void convert(Converter converter);
+    Completable convert(Converter converter);
 }

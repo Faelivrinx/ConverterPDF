@@ -1,5 +1,7 @@
 package converter.convert;
 
+import io.reactivex.Completable;
+import io.reactivex.schedulers.Schedulers;
 import lombok.Getter;
 import org.docx4j.services.client.Format;
 
@@ -10,8 +12,8 @@ public class Converter {
     private String fileInputPath;
     private String fileOutputPath;
 
-    public void convert(ConvertStrategy strategy){
-        strategy.convert(this);
+    public Completable convert(ConvertStrategy strategy){
+        return strategy.convert(this);
     }
 
     public static Builder builder(){
