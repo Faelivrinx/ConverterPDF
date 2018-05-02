@@ -78,6 +78,7 @@ public class HomeController implements BootInitializable {
                 convert.convert(converterFactory.createStrategy(convert));
                 return true;
             })
+                    // TODO: 02.05.2018 Expoler JavaFXSchedulers.gui() 
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .observeOn(io.reactivex.schedulers.Schedulers.single())
                     .subscribe(() -> {
