@@ -14,6 +14,7 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.org.apache.poi.util.IOUtils;
 import org.docx4j.samples.AbstractSample;
 import org.docx4j.services.client.ConversionException;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @RequiredArgsConstructor
+@Component
 public class DocxToPDF extends AbstractSample implements ConvertStrategy {
 
     @Override
@@ -37,7 +39,7 @@ public class DocxToPDF extends AbstractSample implements ConvertStrategy {
             FieldUpdater updater = new FieldUpdater(wordMLPackage);
             updater.update(true);
 
-            if (outputfilepath.isEmpty()){
+            if (outputfilepath == null || outputfilepath.isEmpty()){
                 outputfilepath = inputfilepath + ".pdf";
             }
 
