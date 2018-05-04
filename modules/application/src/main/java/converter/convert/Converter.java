@@ -1,17 +1,21 @@
 package converter.convert;
 
+import convert.ConvertStrategy;
+import convert.Convertable;
+import io.reactivex.Completable;
 import lombok.Getter;
 import org.docx4j.services.client.Format;
 
 @Getter
-public class Converter {
+public class Converter implements Convertable {
     private Format from;
     private Format to;
     private String fileInputPath;
     private String fileOutputPath;
 
-    public void convert(ConvertStrategy strategy){
-        strategy.convert(this);
+    @Override
+    public Completable convert(ConvertStrategy strategy){
+        return strategy.convert(this);
     }
 
     public static Builder builder(){
