@@ -1,4 +1,5 @@
 rootProject.name = 'converter'
 
 include 'modules:application'
+include 'modules:converting'
 

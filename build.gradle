@@ -39,6 +39,9 @@ subprojects {
     ext {
         slf4j = '1.7.25'
         googleGson = '2.8.1'
+        rxjava = '2.1.13'
+        poi = '3.9'
+        docx4j = '3.3.6'
     }
 
     repositories {

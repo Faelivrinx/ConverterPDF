@@ -1,0 +1,7 @@
+group 'convert'
+dependencies{
+    compile "io.reactivex.rxjava2:rxjava:$rxjava"
+
+    compile "org.apache.poi:poi:$poi"
+    compile "org.docx4j:docx4j:$docx4j"
+}

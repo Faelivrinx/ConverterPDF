@@ -1,10 +1,11 @@
 package converter.controller;
 
+import convert.Convertable;
+import convert.ConverterFactory;
+import convert.impl.ConverterFactoryImpl;
 import converter.ConverterApplication;
 import converter.config.BootInitializable;
 import converter.convert.Converter;
-import converter.convert.ConverterFactory;
-import converter.convert.ConverterFactoryImpl;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,7 +21,6 @@ import java.util.ResourceBundle;
 
 @Component
 public class HomeController implements BootInitializable {
-
 
     private ConverterFactory converterFactory;
 
@@ -58,7 +58,7 @@ public class HomeController implements BootInitializable {
             btnFileOpen.setDisable(true);
             btnConvert.setDisable(true);
 
-            Converter convert = Converter.builder()
+            Convertable convert = Converter.builder()
                     .inFormat(Format.DOCX)
                     .outFormat(Format.PDF)
                     .and(lbPath.getText())

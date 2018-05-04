@@ -1,5 +1,7 @@
-package converter.convert;
+package convert.impl;
 
+import convert.ConvertStrategy;
+import convert.Convertable;
 import io.reactivex.Completable;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
@@ -15,7 +17,6 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.org.apache.poi.util.IOUtils;
 import org.docx4j.samples.AbstractSample;
 import org.docx4j.services.client.ConversionException;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,29 +24,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @RequiredArgsConstructor
-@Component
 public class DocxToPDF extends AbstractSample implements ConvertStrategy {
 
     @Override
-    public Completable convert(Converter converter) {
+    public Completable convert(Convertable converter) {
         return Completable.create(emitter -> {
-            inputfilepath = converter.getFileInputPath();
-            outputfilepath = converter.getFileOutputPath();
+            AbstractSample.inputfilepath = converter.getFileInputPath();
+            AbstractSample.outputfilepath = converter.getFileOutputPath();
             try {
                 boolean saveFo = false;
 
                 WordprocessingMLPackage wordMLPackage;
-                System.out.println("Loading file from " + inputfilepath);
-                wordMLPackage = WordprocessingMLPackage.load(new java.io.File(inputfilepath));
+                System.out.println("Loading file from " + AbstractSample.inputfilepath);
+                wordMLPackage = WordprocessingMLPackage.load(new java.io.File(AbstractSample.inputfilepath));
 
                 FieldUpdater updater = new FieldUpdater(wordMLPackage);
                 updater.update(true);
 
-                if (outputfilepath == null || outputfilepath.isEmpty()) {
-                    outputfilepath = inputfilepath + ".pdf";
+                if (AbstractSample.outputfilepath == null || AbstractSample.outputfilepath.isEmpty()) {
+                    AbstractSample.outputfilepath = AbstractSample.inputfilepath + ".pdf";
                 }
 
-                OutputStream os = new java.io.FileOutputStream(outputfilepath);
+                OutputStream os = new java.io.FileOutputStream(AbstractSample.outputfilepath);
                 if (!Docx4J.pdfViaFO()) {
 
                     // Since 3.3.0, Plutext's PDF Converter is used by default
@@ -60,7 +60,7 @@ public class DocxToPDF extends AbstractSample implements ConvertStrategy {
                         // What did we write?
                         IOUtils.closeQuietly(os);
                         System.out.println(
-                                FileUtils.readFileToString(new File(outputfilepath)));
+                                FileUtils.readFileToString(new File(AbstractSample.outputfilepath)));
                         if (e.getCause() != null
                                 && e.getCause() instanceof ConversionException) {
 
@@ -70,7 +70,7 @@ public class DocxToPDF extends AbstractSample implements ConvertStrategy {
                         emitter.onError(e);
                         return;
                     }
-                    System.out.println("Saved: " + outputfilepath);
+                    System.out.println("Saved: " + AbstractSample.outputfilepath);
                     emitter.onComplete();
                     return;
                 }
@@ -145,7 +145,7 @@ public class DocxToPDF extends AbstractSample implements ConvertStrategy {
                 // .. the FOSettings object
                 FOSettings foSettings = Docx4J.createFOSettings();
                 if (saveFo) {
-                    foSettings.setFoDumpFile(new java.io.File(inputfilepath + ".fo"));
+                    foSettings.setFoDumpFile(new java.io.File(AbstractSample.inputfilepath + ".fo"));
                 }
                 foSettings.setWmlPackage(wordMLPackage);
 
@@ -170,7 +170,7 @@ public class DocxToPDF extends AbstractSample implements ConvertStrategy {
                 // .. faster, but not yet at feature parity
                 // Docx4J.toFO(foSettings, os, Docx4J.FLAG_EXPORT_PREFER_NONXSL);
 
-                System.out.println("Saved: " + outputfilepath);
+                System.out.println("Saved: " + AbstractSample.outputfilepath);
 
                 // Clean up, so any ObfuscatedFontPart temp files can be deleted
                 if (wordMLPackage.getMainDocumentPart().getFontTablePart() != null) {
