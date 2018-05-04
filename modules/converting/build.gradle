@@ -4,4 +4,6 @@ dependencies{
 
     compile "org.apache.poi:poi:$poi"
     compile "org.docx4j:docx4j:$docx4j"
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
